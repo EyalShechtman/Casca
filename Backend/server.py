@@ -39,14 +39,14 @@ def upload_file():
             
             try:
                 print("Processing PDF...")
-                text = read_pdf(filepath)
+                # text = read_pdf(filepath)
                 print("Calling GPT...")
-                response = LLM_response(text)
+                # response = LLM_response(text)
                 print("Writing response...")
-                with open("Chat_response.txt", "w") as f:
-                    f.write(response.choices[0].message.content)
+                # with open("Chat_response.txt", "w") as f:
+                #     f.write(response.choices[0].message.content)
                 print("Extracting JSON...")
-                extract_and_save_json("Chat_response.txt")
+                # extract_and_save_json("Chat_response.txt")
                 print("Processing complete!")
                 
                 return jsonify({'message': 'File uploaded and processed successfully'}), 200

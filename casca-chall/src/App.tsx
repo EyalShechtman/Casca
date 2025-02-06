@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { CloudArrowUpIcon } from '@heroicons/react/24/outline'
+import { CloudArrowUpIcon, ClipboardDocumentIcon, InformationCircleIcon } from '@heroicons/react/24/outline'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import './index.css';
+import TransactionsTable from './TransactionsTbl';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale)
 
@@ -24,7 +25,7 @@ interface BankStatement {
   transactions: Transaction[]
   summary: string
   recurring_transactions: string[]
-  top_categories: string[]
+  top_categories: {[key:string]:number}
 }
 
 interface Statistics {
@@ -95,7 +96,7 @@ function App() {
     }
   }
 
-  const prepareChartData = (categories: string[]) => {
+  const prepareChartData = (categories: {[key: string]: number}) => {
     const colors = [
       { bg: 'rgba(79, 70, 229, 0.8)', border: 'rgb(79, 70, 229)' },
       { bg: 'rgba(236, 72, 153, 0.8)', border: 'rgb(236, 72, 153)' },
@@ -103,16 +104,18 @@ function App() {
       { bg: 'rgba(245, 158, 11, 0.8)', border: 'rgb(245, 158, 11)' },
       { bg: 'rgba(99, 102, 241, 0.8)', border: 'rgb(99, 102, 241)' },
     ]
+
+    const labels = Object.keys(categories)
+    const data = Object.values(categories)
+    
     return {
-      labels: categories,
-      datasets: [
-        {
-          data: categories.map(() => Math.floor(100 / (categories.length || 1))),
-          backgroundColor: colors.map((c) => c.bg),
-          borderColor: colors.map((c) => c.border),
-          borderWidth: 2,
-        },
-      ],
+      labels,
+      datasets: [{
+        data,
+        backgroundColor: colors.map(c => c.bg).slice(0, labels.length),
+        borderColor: colors.map(c => c.border).slice(0, labels.length),
+        borderWidth: 2,
+      }],
     }
   }
 
@@ -122,11 +125,23 @@ function App() {
       currency: 'USD',
     }).format(value)
 
+  const statsInfo = {
+    NCF: "Net Cash Flow (NCF) shows the total movement of money in your account. Debits - Credits = NCF.",
+    income_stability: "Income Stability shows how consistent your income is across months. 100% means perfectly stable income, 0 means no stability.",
+    overdraft: "# of times your account balance went below zero during this period.",
+    expense_ratio: "Average Expense Ratio shows what percentage of your income goes to expenses. Lower percentages indicate better saving habits."
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Hero Section */}
+      {/* Hero Section with Account Holder */}
       <div className="bg-gradient-to-r from-indigo-500 to-pink-500 py-16 text-center text-white">
         <h1 className="text-5xl font-extrabold mb-4">Financial Insights Dashboard</h1>
+        {bankData && (
+          <h2 className="text-2xl font-medium mb-4">
+            Welcome, {bankData.account_holder_name}
+          </h2>
+        )}
         <p className="text-xl text-indigo-50 max-w-2xl mx-auto">
           Get detailed analysis and visualization of your bank statement in seconds.
         </p>
@@ -206,6 +221,24 @@ function App() {
         </div>
       </div>
 
+      {/* Loading Progress Bar */}
+      {isAnalyzing && (
+        <div className="w-full max-w-5xl mx-auto px-4 mt-8">
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">Analyzing your statement...</span>
+              <span className="text-sm font-medium text-indigo-600">Please wait</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div className="bg-indigo-600 h-2.5 rounded-full animate-[loading_2s_ease-in-out_infinite]" style={{ width: '90%' }}></div>
+            </div>
+            <div className="mt-2 text-sm text-gray-500">
+              This usually takes about 15-20 seconds
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Analysis Results */}
       {(bankData || statistics) && (
         <div className="w-full max-w-5xl mx-auto px-4 pb-12 space-y-12">
@@ -219,32 +252,34 @@ function App() {
                 ),
                 icon: '💰',
                 color: 'bg-blue-600',
+                info: statsInfo.NCF
               },
               {
                 label: 'Income Stability',
                 value: `${statistics?.income_stability.toFixed(1)}%`,
                 icon: '📈',
                 color: 'bg-green-600',
+                info: statsInfo.income_stability
               },
               {
                 label: 'Overdrafts',
                 value: statistics?.overdraft_limit,
                 icon: '⚠️',
                 color: 'bg-red-600',
+                info: statsInfo.overdraft
               },
               {
                 label: 'Avg Expense Ratio',
-                value: `${
-                  (
-                    Object.values(statistics?.expense_income_ratio || {}).reduce(
-                      (a, b) => a + b,
-                      0,
-                    ) /
-                    (Object.keys(statistics?.expense_income_ratio || {}).length || 1)
-                  ).toFixed(1)
-                }%`,
+                value: `${(
+                  Object.values(statistics?.expense_income_ratio || {}).reduce(
+                    (a, b) => a + b,
+                    0,
+                  ) /
+                  (Object.keys(statistics?.expense_income_ratio || {}).length || 1)
+                ).toFixed(1)}%`,
                 icon: '📊',
                 color: 'bg-purple-600',
+                info: statsInfo.expense_ratio
               },
             ].map((stat, idx) => (
               <div key={idx} className="bg-white rounded-lg shadow p-4 flex items-center">
@@ -253,8 +288,19 @@ function App() {
                 >
                   {stat.icon}
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-500">{stat.label}</span>
+                <div className="flex flex-col flex-grow">
+                  <div className="flex items-center">
+                    <span className="text-sm text-gray-500">{stat.label}</span>
+                    <div className="group relative ml-2">
+                      <InformationCircleIcon className="h-4 w-4 text-gray-400 hover:text-indigo-500 cursor-help" />
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                        {stat.info}
+                        {/* Arrow */}
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                      </div>
+                    </div>
+                  </div>
                   <span className="text-xl font-semibold">{stat.value}</span>
                 </div>
               </div>
@@ -271,7 +317,7 @@ function App() {
               <div className="flex justify-center">
                 <div className="max-w-xs">
                   <Pie
-                    data={prepareChartData(bankData?.top_categories || [])}
+                    data={prepareChartData(bankData?.top_categories || {})}
                     options={{
                       maintainAspectRatio: true,
                       plugins: {
@@ -279,24 +325,41 @@ function App() {
                           position: 'bottom',
                           labels: { padding: 10, usePointStyle: true },
                         },
+                        tooltip: {
+                          callbacks: {
+                            label: function(context) {
+                              const label = context.label || '';
+                              const value = Number(context.raw);
+                              const dataset = context.dataset;
+                              const total = dataset.data.reduce((sum, val) => sum + Number(val), 0);
+                              const percentage = Math.round((value / total) * 100);
+                              return `${label}: ${value} transactions (${percentage}%)`;
+                            }
+                          }
+                        }
                       },
                     }}
                   />
                 </div>
               </div>
-              {/* Example of presenting category info below the chart */}
-              {bankData?.top_categories && bankData.top_categories.length > 0 && (
+              {/* Category breakdown list */}
+              {bankData?.top_categories && Object.keys(bankData.top_categories).length > 0 && (
                 <div className="mt-6">
                   <h4 className="text-md font-medium mb-2 text-gray-700">
-                    Top Categories Overview
+                    Categories Breakdown
                   </h4>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
-                    {bankData.top_categories.map((category, i) => (
-                      <li key={i} className="ml-3">
-                        {category}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="space-y-2">
+                    {Object.entries(bankData.top_categories)
+                      .sort(([,a], [,b]) => b - a) // Sort by number of transactions
+                      .map(([category, count], i) => (
+                        <div key={i} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                          <span className="text-gray-700">{category}</span>
+                          <span className="text-gray-500 font-medium">
+                            {count} {count === 1 ? 'transaction' : 'transactions'}
+                          </span>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -310,10 +373,34 @@ function App() {
                 {bankData?.recurring_transactions.map((transaction, index) => (
                   <div
                     key={index}
-                    className="flex items-center p-4 bg-indigo-50 rounded-lg hover:shadow transition"
+                    className="flex items-center justify-between p-4 bg-indigo-50 rounded-lg hover:shadow transition cursor-pointer"
+                    onClick={() => {
+                      // Find matching transaction in table
+                      const matchingRow = document.querySelector(`td[data-description="${transaction}"]`);
+                      if (matchingRow) {
+                        matchingRow.scrollIntoView({ behavior: 'smooth' });
+                        matchingRow.classList.add('bg-indigo-100');
+                        setTimeout(() => matchingRow.classList.remove('bg-indigo-100'), 2000);
+                      }
+                    }}
                   >
-                    <span className="text-xl mr-3">🔄</span>
-                    <span className="text-gray-700 font-medium">{transaction}</span>
+                    <div className="flex items-center">
+                      <span className="text-xl mr-3">🔄</span>
+                      <span className="text-gray-700 font-medium">{transaction}</span>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering the parent onClick
+                        navigator.clipboard.writeText(transaction);
+                        const button = e.currentTarget;
+                        button.classList.add('text-green-500');
+                        setTimeout(() => button.classList.remove('text-green-500'), 1000);
+                      }}
+                      className="p-2 hover:bg-indigo-100 rounded-full transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      <ClipboardDocumentIcon className="h-5 w-5" />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -321,43 +408,9 @@ function App() {
           </div>
 
           {/* Transactions Table */}
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 text-center">
-                Recent Transactions
-              </h3>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
-                      Date
-                    </th>
-                    <th className="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
-                      Description
-                    </th>
-                    <th className="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
-                      Amount
-                    </th>
-                    <th className="px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">
-                      Type
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {bankData?.transactions.slice(0, 5).map((transaction, index) => (
-                    <tr key={index} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">{transaction.date}</td>
-                      <td className="px-6 py-4">{transaction.description}</td>
-                      <td className="px-6 py-4">{transaction.amount}</td>
-                      <td className="px-6 py-4">{transaction.type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          {bankData?.transactions && bankData.transactions.length > 0 && (
+            <TransactionsTable transactions={bankData.transactions} />
+          )}
         </div>
       )}
     </div>

@@ -35,12 +35,12 @@ def prepare_data(data):
     df['date'] = pd.to_datetime(df['date'], format='mixed', dayfirst=True)
     print("Date values after parsing:", df['date'].head())    
     df = df.sort_values(by='date')
-    # print(df)
+    # print(df['amount'])
 
 
 
     df["numeric_amount"] = df["amount"].replace(r'[\$,]', '', regex=True).astype(float)
-    df["adjusted_amount"] = df["numeric_amount"] * df["type"].apply(lambda x: -1 if x == "Credit" else 1)
+    df["adjusted_amount"] = df["numeric_amount"] * df["type"].map({"Credit": 1, "Debit": -1}).fillna(0)
     df["current_balance"] = starting_balance + df["adjusted_amount"].cumsum()
 
     return df
@@ -66,32 +66,29 @@ def get_expense_income_ratio(df):
     for month in df['date'].dt.month.unique():
         monthly_data = df[df["date"].dt.month == month]
 
-        total_expenses = abs(monthly_data[monthly_data["type"] == "Credit"]["adjusted_amount"].sum())
+        total_expenses = abs(monthly_data[monthly_data["type"] == "Debit"]["adjusted_amount"].sum())
 
-        total_income = monthly_data[monthly_data["type"] == "Debit"]["adjusted_amount"].sum()
+        total_income = monthly_data[monthly_data["type"] == "Credit"]["adjusted_amount"].sum()
 
-        if total_expenses == 0:
+        if total_income == 0:
             ratio = 0
         else:
             ratio = (round(total_expenses / total_income, 2)) * 100
 
         monthly_ratios[int(month)] = ratio
+        print(f"Monthly ratio for month {month}: {ratio}")
 
     return monthly_ratios
-
 def get_overdraft_limit(df):
-    counter = 0
-    for index, row in df.iterrows():
-        if row['current_balance'] < 0:
-            counter += 1
+    overdraft_instances = df[df["current_balance"] < 0]
 
-    return counter
+    return len(overdraft_instances)
 
 def get_income_stability(df):
     monthly_list = []
     for month in df['date'].dt.month.unique():
         monthly_data = df[df["date"].dt.month == month]
-        monthly_income = monthly_data[monthly_data["type"] == "Debit"]["adjusted_amount"].sum()
+        monthly_income = monthly_data[monthly_data["type"] == "Credit"]["adjusted_amount"].sum()
         monthly_list.append(monthly_income)
 
     return round((min(monthly_list)/max(monthly_list))*100, 2)

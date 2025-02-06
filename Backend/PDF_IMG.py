@@ -72,7 +72,11 @@ This is how the JSON should look like:
   ],
   "summary": "x",
   "recurring_transactions": ["x", "x", ...],
-  "top_categories": ["x", "x", ...]
+  "top_categories": {
+    "category_name": "# of transactions - ONLY INCLUDE THE NUMBER",
+    "category_name": "# of transactions - ONLY INCLUDE THE NUMBER",
+    ...
+  }
 }
 """
 

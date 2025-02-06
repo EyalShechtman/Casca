@@ -9,13 +9,13 @@
     "transactions": [
         {
             "date": "15 Oct 2017",
-            "description": "Alinta Sales Pty Ltd NetBank BPAY 2733 0400032246",
+            "description": "Alinta Sales Pty Ltd NetBank BPAY 2733",
             "amount": "$50.00",
             "type": "Debit"
         },
         {
             "date": "23 Oct 2017",
-            "description": "VIRGIN MONEY NetBank BPAY 49551 4724373501635385",
+            "description": "VIRGIN MONEY NetBank BPAY 49551",
             "amount": "$1,000.00",
             "type": "Debit"
         },
@@ -69,7 +69,7 @@
         },
         {
             "date": "07 Nov 2017",
-            "description": "TELSTRA CORP LTD NetBank BPAY 23796 2000353972134",
+            "description": "TELSTRA CORP LTD NetBank BPAY 23796",
             "amount": "$115.00",
             "type": "Debit"
         },
@@ -87,7 +87,7 @@
         },
         {
             "date": "22 Nov 2017",
-            "description": "Direct Debit 068093 SYNERGY RETAIL B 257300733078",
+            "description": "Direct Debit 068093 SYNERGY RETAIL B",
             "amount": "$190.70",
             "type": "Debit"
         },
@@ -135,7 +135,7 @@
         },
         {
             "date": "06 Dec 2017",
-            "description": "TAX OFFICE PAYMENTS NetBank BPAY 75556 551004045508468221 ATO tax 2016 to 20",
+            "description": "TAX OFFICE PAYMENTS NetBank BPAY 75556 ATO tax 2016 to 20",
             "amount": "$850.75",
             "type": "Debit"
         },
@@ -147,7 +147,7 @@
         },
         {
             "date": "07 Dec 2017",
-            "description": "TELSTRA CORP LTD NetBank BPAY 23796 2000353972134",
+            "description": "TELSTRA CORP LTD NetBank BPAY 23796",
             "amount": "$115.00",
             "type": "Debit"
         },
@@ -219,22 +219,23 @@
         },
         {
             "date": "07 Jan 2018",
-            "description": "TELSTRA CORP LTD NetBank BPAY 23796 2000353972134",
+            "description": "TELSTRA CORP LTD NetBank BPAY 23796",
             "amount": "$115.00",
             "type": "Debit"
         }
     ],
-    "summary": "The statement period shows a sequence of regular bills being debited, transfers to another account, credits from individuals, and account fees.",
+    "summary": "The account has a high frequency of transactions related to household bills, gym memberships, and telecommunications.",
     "recurring_transactions": [
-        "Direct Debit SGIO",
-        "Direct Debit JETTS KINGSWAY",
-        "Direct Credit JESSICA LAING",
-        "Direct Debit HBF - HEALTH",
+        "Direct Debit 165969 JETTS KINGSWAY",
+        "Direct Debit 180247 SGIO",
+        "Direct Credit 421520 JESSICA LAING JL - Internet",
         "TELSTRA CORP LTD NetBank BPAY"
     ],
     "top_categories": [
-        "Utilities and Recurring Payments",
-        "Transfers to other banks",
-        "Memberships and Subscriptions"
+        "Household Bills",
+        "Healthcare",
+        "Transfers",
+        "Telecommunications",
+        "Gym Membership"
     ]
 }

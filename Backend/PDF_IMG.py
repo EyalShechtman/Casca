@@ -20,31 +20,25 @@ You are a Bank Statement PDF analyzer. All you need to do is to extract the foll
 
 1️⃣ Account Holder Name
 2️⃣ Statement Period (Start Date, End Date)
-3️⃣ Opening Balance
-4️⃣ Closing Balance
-5️⃣ All Transactions (Date, Description, Amount, Type)
+3️⃣ Currency (standard ISO 4217 currency code. Ex. USD, EUR, GBP, etc.)
+4️⃣ Opening Balance
+5️⃣ Closing Balance
+6️⃣ All Transactions (Date, Description, Amount, Type)
 - Date (When the transaction happened)
 - Description (Who or what the transaction was for)
-- Amount (The transaction value)
-- Type (Credit or Debit)
+- Amount (The transaction value), Don't include the currency symbol in the amount.
+- (Credit or Debit), ONLY PAY ATTENTION WHETHER THE MONEY IS GOING OUT OR COMING IN, not the type of transaction. (Credit - Money In, Debit - Meney Out)
 For all MONEY, DONT INCLUDE CR or DR in the amounts!
-
-RETURN A JSON OBJECT WITH THE FOLLOWING KEYS:
-- account_holder_name
-- statement_period
-- opening_balance
-- closing_balance
-- transactions
-
 
 Rules:
 MAKE SURE TO READ EVERY TRANSACTION AND INCLUDE IT IN THE JSON. 
-In the JSON, create a summary of the user's spending.
-In adittion, in the JSON, identify if there are any recurring transactions and if so, just name them.
+In the JSON, create a summary of the user's spending, make sure to include whether you would reccomend the user to get a loan or not based on their spending. Be on the safer side. 
+-- Make the summary no more than 70 words.
+In adittion, in the JSON, identify if there are any recurring transactions, THERE ARE USUALLY MULTIPLE.
 IN adittion, if you can, in teh JSON, identify the user's top categoris of spending. 
 All the dates should be in this format: 14 Oct 2017
 
-
+RETURN A JSON OBJECT. 
 This is how the JSON should look like:
 
 {
@@ -53,6 +47,7 @@ This is how the JSON should look like:
     "start_date": "x",
     "end_date": "x"
   },
+  "currency": "x",
   "opening_balance": "$x",
   "closing_balance": "$x",
   "transactions": [

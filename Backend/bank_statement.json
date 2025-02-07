@@ -1,241 +1,307 @@
 {
-    "account_holder_name": "CLIFFORD HENRY BENNISON",
+    "account_holder_name": "Chandrakant Yuvraj Bansode",
     "statement_period": {
-        "start_date": "14 Oct 2017",
-        "end_date": "13 Jan 2018"
+        "start_date": "01 Apr 2018",
+        "end_date": "31 Mar 2019"
     },
-    "opening_balance": "$2,217.29",
-    "closing_balance": "$395.43",
+    "currency": "INR",
+    "opening_balance": "21.62",
+    "closing_balance": "45.12",
     "transactions": [
         {
-            "date": "15 Oct 2017",
-            "description": "Alinta Sales Pty Ltd NetBank BPAY",
-            "amount": "$50.00",
-            "type": "Debit"
-        },
-        {
-            "date": "23 Oct 2017",
-            "description": "VIRGIN MONEY NetBank BPAY",
-            "amount": "$1,000.00",
-            "type": "Debit"
-        },
-        {
-            "date": "23 Oct 2017",
-            "description": "Transfer to xx6832 NetBank",
-            "amount": "$70.00",
-            "type": "Debit"
-        },
-        {
-            "date": "23 Oct 2017",
-            "description": "Direct Debit SGIO",
-            "amount": "$56.42",
-            "type": "Debit"
-        },
-        {
-            "date": "26 Oct 2017",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
-            "type": "Debit"
-        },
-        {
-            "date": "01 Nov 2017",
-            "description": "Account Fee",
-            "amount": "$4.00",
-            "type": "Debit"
-        },
-        {
-            "date": "01 Nov 2017",
-            "description": "Direct Credit JESSICA LAING",
-            "amount": "$40.00",
+            "date": "01 Apr 2018",
+            "description": "IMPS-MOB/Fund Trf/809119519742/Oma Ram/BENE - VER",
+            "amount": "1.00",
             "type": "Credit"
         },
         {
-            "date": "01 Nov 2017",
-            "description": "Transfer from xx8727 CommBank app",
-            "amount": "$1,000.00",
+            "date": "01 Apr 2018",
+            "description": "IMPS-MOB/Fund Trf/809119553510/Oma Ram/2000",
+            "amount": "2000.00",
             "type": "Credit"
         },
         {
-            "date": "01 Nov 2017",
-            "description": "Direct Debit HBF - HEALTH",
-            "amount": "$122.25",
+            "date": "03 Apr 2018",
+            "description": "NACH/TP ACH Bajaj Finanac/88551679",
+            "amount": "1912.00",
             "type": "Debit"
         },
         {
-            "date": "05 Nov 2017",
-            "description": "Transfer to other Bank NetBank Oronsay",
-            "amount": "$700.00",
-            "type": "Debit"
-        },
-        {
-            "date": "07 Nov 2017",
-            "description": "TELSTRA CORP LTD NetBank BPAY",
-            "amount": "$115.00",
-            "type": "Debit"
-        },
-        {
-            "date": "09 Nov 2017",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
-            "type": "Debit"
-        },
-        {
-            "date": "21 Nov 2017",
-            "description": "Direct Debit SGIO",
-            "amount": "$56.42",
-            "type": "Debit"
-        },
-        {
-            "date": "22 Nov 2017",
-            "description": "Direct Debit SYNERGY RETAIL B",
-            "amount": "$190.70",
-            "type": "Debit"
-        },
-        {
-            "date": "23 Nov 2017",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
-            "type": "Debit"
-        },
-        {
-            "date": "01 Dec 2017",
-            "description": "Account Fee",
-            "amount": "$4.00",
-            "type": "Debit"
-        },
-        {
-            "date": "01 Dec 2017",
-            "description": "Direct Credit JESSICA LAING",
-            "amount": "$40.00",
+            "date": "04 Apr 2018",
+            "description": "APB-INW/HP644950 000009 3003",
+            "amount": "170.20",
             "type": "Credit"
         },
         {
-            "date": "01 Dec 2017",
-            "description": "Transfer from xx8727 NetBank",
-            "amount": "$1,000.00",
+            "date": "04 Apr 2018",
+            "description": "POS-VISA/KARUN MEDICAL/809414290216",
+            "amount": "75.00",
+            "type": "Debit"
+        },
+        {
+            "date": "05 Apr 2018",
+            "description": "IMPS-MOB/Fund Trf/809521437177/NITI N POOJARI/null",
+            "amount": "3200.00",
             "type": "Credit"
         },
         {
-            "date": "01 Dec 2017",
-            "description": "Transfer to xx6832 NetBank",
-            "amount": "$70.00",
+            "date": "10 Apr 2018",
+            "description": "BILLPAY/RECH/VODAFONE PRE/181000095662/10042018",
+            "amount": "509.00",
             "type": "Debit"
         },
         {
-            "date": "01 Dec 2017",
-            "description": "Direct Debit HBF - HEALTH",
-            "amount": "$122.25",
+            "date": "10 Apr 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+DONGRI OAT M/810020011497",
+            "amount": "2000.00",
             "type": "Debit"
         },
         {
-            "date": "05 Dec 2017",
-            "description": "Transfer to other Bank NetBank Oronsay",
-            "amount": "$700.00",
+            "date": "14 Apr 2018",
+            "description": "ATM-NFS/CASH  WITHDRAWAL/+HIRANANDANI AKRUTI/810418",
+            "amount": "500.00",
             "type": "Debit"
         },
         {
-            "date": "06 Dec 2017",
-            "description": "TAX OFFICE PAYMENTS NetBank BPAY",
-            "amount": "$850.75",
+            "date": "20 Apr 2018",
+            "description": "IMPS-RIB/Fund Trf/811010759849/Pay Rs300",
+            "amount": "300.00",
             "type": "Debit"
         },
         {
-            "date": "06 Dec 2017",
-            "description": "Transfer from xx8727 NetBank",
-            "amount": "$700.00",
+            "date": "20 Apr 2018",
+            "description": "IMPS-RIB/FT-REV/811010759849/Pay Rs300",
+            "amount": "300.00",
             "type": "Credit"
         },
         {
-            "date": "07 Dec 2017",
-            "description": "TELSTRA CORP LTD NetBank BPAY",
-            "amount": "$115.00",
+            "date": "20 Apr 2018",
+            "description": "POS-VISA/MANSI MEDICAL/811013502615",
+            "amount": "75.00",
             "type": "Debit"
         },
         {
-            "date": "07 Dec 2017",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
-            "type": "Debit"
-        },
-        {
-            "date": "21 Dec 2017",
-            "description": "Direct Debit SGIO",
-            "amount": "$56.42",
-            "type": "Debit"
-        },
-        {
-            "date": "21 Dec 2017",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
-            "type": "Debit"
-        },
-        {
-            "date": "27 Dec 2017",
-            "description": "Direct Credit CAMERON BROWNING",
-            "amount": "$20.00",
+            "date": "22 Apr 2018",
+            "description": "IMPS-MOB/Fund Trf/811212400262/Chandrakant Yuv/BE",
+            "amount": "1.00",
             "type": "Credit"
         },
         {
-            "date": "01 Jan 2018",
-            "description": "Account Fee",
-            "amount": "$4.00",
-            "type": "Debit"
-        },
-        {
-            "date": "02 Jan 2018",
-            "description": "Direct Credit JESSICA LAING",
-            "amount": "$40.00",
+            "date": "22 Apr 2018",
+            "description": "IMPS-MOB/Fund Trf/811212428216/Chandrakant Yuv/ch",
+            "amount": "4999.00",
             "type": "Credit"
         },
         {
-            "date": "02 Jan 2018",
-            "description": "Direct Debit HBF - HEALTH",
-            "amount": "$122.25",
-            "type": "Debit"
-        },
-        {
-            "date": "04 Jan 2018",
-            "description": "Transfer from xx8727 CommBank app",
-            "amount": "$800.00",
+            "date": "22 Apr 2018",
+            "description": "IMPS-RIB/Fund Trf/811212820665/Pay salary",
+            "amount": "1000.00",
             "type": "Credit"
         },
         {
-            "date": "04 Jan 2018",
-            "description": "Transfer to xx6832 CommBank app",
-            "amount": "$70.00",
+            "date": "22 Apr 2018",
+            "description": "IMPS-RIB/Fund Trf/811213820961/Pay for salary",
+            "amount": "500.00",
+            "type": "Credit"
+        },
+        {
+            "date": "23 Apr 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+HIRANANDANI AKRUTI/811309",
+            "amount": "1000.00",
             "type": "Debit"
         },
         {
-            "date": "04 Jan 2018",
-            "description": "Direct Debit JETTS KINGSWAY",
-            "amount": "$27.90",
+            "date": "23 Apr 2018",
+            "description": "IMPS-RIB/Fund Trf/811320861437/Pay salaryRs2500",
+            "amount": "2500.00",
+            "type": "Credit"
+        },
+        {
+            "date": "23 Apr 2018",
+            "description": "IMPS-RIB/Fund Trf/811321862644/Pay 300",
+            "amount": "300.00",
+            "type": "Credit"
+        },
+        {
+            "date": "03 May 2018",
+            "description": "IMPS-INET/Fund Trf/812321002185/Chandrakant Yuv/I",
+            "amount": "2000.00",
+            "type": "Credit"
+        },
+        {
+            "date": "05 May 2018",
+            "description": "NACH/TP ACH Bajaj Finanac/97127969",
+            "amount": "1912.00",
             "type": "Debit"
         },
         {
-            "date": "05 Jan 2018",
-            "description": "Transfer to other Bank NetBank Oronsay",
-            "amount": "$700.00",
+            "date": "09 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+WHITE HOUSE/812912009989",
+            "amount": "100.00",
             "type": "Debit"
         },
         {
-            "date": "07 Jan 2018",
-            "description": "TELSTRA CORP LTD NetBank BPAY",
-            "amount": "$115.00",
+            "date": "09 May 2018",
+            "description": "IMPS-MOB/Fund Trf/812917902484/SACH IN PANDURAN/Fr",
+            "amount": "200.00",
+            "type": "Credit"
+        },
+        {
+            "date": "11 May 2018",
+            "description": "IMPS-RIB/Fund Trf/813114420579/Pay salary",
+            "amount": "200.00",
+            "type": "Debit"
+        },
+        {
+            "date": "11 May 2018",
+            "description": "IMPS-RIB/FT-REV/813114420579/Pay salary",
+            "amount": "200.00",
+            "type": "Credit"
+        },
+        {
+            "date": "11 May 2018",
+            "description": "IMPS-RIB/Fund Trf/813117426391/Pay for arjant",
+            "amount": "200.00",
+            "type": "Debit"
+        },
+        {
+            "date": "11 May 2018",
+            "description": "IMPS-RIB/FT-REV/813117426391/Pay for arjant",
+            "amount": "200.00",
+            "type": "Credit"
+        },
+        {
+            "date": "12 May 2018",
+            "description": "BILLPAY/RECH/IDEA PREPAID/181320083270/12052018",
+            "amount": "27.00",
+            "type": "Debit"
+        },
+        {
+            "date": "16 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+Sandhurst Road/8136190082",
+            "amount": "100.00",
+            "type": "Debit"
+        },
+        {
+            "date": "17 May 2018",
+            "description": "APB-INW/HP644950 012055 1405",
+            "amount": "134.06",
+            "type": "Credit"
+        },
+        {
+            "date": "17 May 2018",
+            "description": "IMPS-MOB/Fund Trf/813700005886/RID-24 SP/9090",
+            "amount": "6000.00",
+            "type": "Credit"
+        },
+        {
+            "date": "18 May 2018",
+            "description": "IMPS-MOB/Fund Trf/813800005916/RID-24 SP/0098",
+            "amount": "1200.00",
+            "type": "Credit"
+        },
+        {
+            "date": "18 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+WADIBUNDER/813810005906",
+            "amount": "500.00",
+            "type": "Debit"
+        },
+        {
+            "date": "20 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+HIRANANDANI AKRUTI/814016",
+            "amount": "500.00",
+            "type": "Debit"
+        },
+        {
+            "date": "20 May 2018",
+            "description": "POS-VISA/KARUN MEDICAL/814016444557",
+            "amount": "75.00",
+            "type": "Debit"
+        },
+        {
+            "date": "21 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+HIRANANDANI AKRUTI/814110",
+            "amount": "1000.00",
+            "type": "Debit"
+        },
+        {
+            "date": "21 May 2018",
+            "description": "POS-VISA/FLIPKART PAYMENTS/814109451953",
+            "amount": "569.00",
+            "type": "Debit"
+        },
+        {
+            "date": "21 May 2018",
+            "description": "ATM-NFS/CASH WITHDRAWAL/+GOVANDI EAST BR/814117029",
+            "amount": "3000.00",
+            "type": "Debit"
+        },
+        {
+            "date": "21 May 2018",
+            "description": "POS-VISA/HOTEL SAROJ/814118881722",
+            "amount": "300.00",
+            "type": "Debit"
+        },
+        {
+            "date": "23 May 2018",
+            "description": "BILLPAY/RECH/VODAFONE PRE/181430064620/23052018",
+            "amount": "100.00",
+            "type": "Debit"
+        },
+        {
+            "date": "23 May 2018",
+            "description": "BILLPAY/RECH/TATASKY DTH/181430065842/23052018",
+            "amount": "1000.00",
+            "type": "Debit"
+        },
+        {
+            "date": "01 Jun 2018",
+            "description": "POS-VISA/Upper Crust Foods Pvt THANE/815214619098",
+            "amount": "261.00",
+            "type": "Debit"
+        },
+        {
+            "date": "01 Jun 2018",
+            "description": "IMPS-MOB/Fund Trf/815200006812/RID-24 SP/Payment",
+            "amount": "2000.00",
+            "type": "Credit"
+        },
+        {
+            "date": "02 Jun 2018",
+            "description": "NACH/TP ACH Bajaj Finanac/101294174",
+            "amount": "1912.00",
+            "type": "Debit"
+        },
+        {
+            "date": "06 Jun 2018",
+            "description": "Charge:Cash Wdl at other ATM/Inv2705181513668571/2",
+            "amount": "20.00",
+            "type": "Debit"
+        },
+        {
+            "date": "06 Jun 2018",
+            "description": "CGST on Charge:Cash Wdl at other ATM/Inv2705181513",
+            "amount": "1.80",
+            "type": "Debit"
+        },
+        {
+            "date": "06 Jun 2018",
+            "description": "SGST on Charge:Cash Wdl at other ATM/Inv2705181513",
+            "amount": "1.80",
             "type": "Debit"
         }
     ],
-    "summary": "During the statement period, the account holder engaged in multiple transactions involving credits mainly from transfers and JESSICA LAING, as well as recurring debits for gym memberships, health insurance, and utility payments.",
+    "summary": "The account shows varied transactions, with frequent debits exceeding credits. Loan recommendation is not advised due to unstable balance inflow and expenditure on non-essentials.",
     "recurring_transactions": [
-        "JETTS KINGSWAY",
-        "SGIO",
-        "HBF - HEALTH",
-        "TELSTRA CORP LTD",
-        "Account Fee",
-        "JESSICA LAING"
+        "NACH/TP ACH Bajaj Finanac",
+        "BILLPAY/RECH/VODAFONE PRE",
+        "POS-VISA/KARUN MEDICAL",
+        "POS-VISA/MANSI MEDICAL"
     ],
     "top_categories": {
-        "Direct Debits": "9",
-        "Transfers": "8",
-        "NetBank BPAY": "5"
+        "fund_transfers": "15",
+        "cash_withdrawals": "10",
+        "medical_expenses": "5",
+        "bill_payments": "4"
     }
 }

@@ -26,22 +26,21 @@ def prepare_data(data):
     with open(data, "r") as f:
         data = json.load(f)
     transactions = data.get('transactions')
-    starting_balance = data.get('opening_balance', "$0.00")
-    starting_balance = float(starting_balance.replace("$", "").replace(",", ""))    
+    starting_balance = data.get('opening_balance')
+    # Handle any currency symbol by removing all non-numeric characters except decimal point
+    starting_balance = float(re.sub(r'[^\d.-]', '', starting_balance))
     df = pd.DataFrame(transactions)
 
-    print("Date values before parsing:", df['date'].head())
-
+    df['type'] = df['type'].replace({"In": "Credit", "Out": "Debit"})
+    
     df['date'] = pd.to_datetime(df['date'], format='mixed', dayfirst=True)
-    print("Date values after parsing:", df['date'].head())    
-    df = df.sort_values(by='date')
-    # print(df['amount'])
+    # df = df.sort_values(by='date')
 
-
-
-    df["numeric_amount"] = df["amount"].replace(r'[\$,]', '', regex=True).astype(float)
+    # Remove any currency symbols or commas from amount
+    df["numeric_amount"] = df["amount"].replace(r'[^\d.-]', '', regex=True).astype(float)
     df["adjusted_amount"] = df["numeric_amount"] * df["type"].map({"Credit": 1, "Debit": -1}).fillna(0)
     df["current_balance"] = starting_balance + df["adjusted_amount"].cumsum()
+    # print(df['current_balance'])
 
     return df
 
@@ -76,7 +75,7 @@ def get_expense_income_ratio(df):
             ratio = (round(total_expenses / total_income, 2)) * 100
 
         monthly_ratios[int(month)] = ratio
-        print(f"Monthly ratio for month {month}: {ratio}")
+        # print(f"Monthly ratio for month {month}: {ratio}")
 
     return monthly_ratios
 def get_overdraft_limit(df):

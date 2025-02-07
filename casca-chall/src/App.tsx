@@ -7,7 +7,7 @@ import TransactionsTable from './TransactionsTbl';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale)
 
-interface Transaction {
+export interface Transaction {
   date: string
   description: string
   amount: string
@@ -20,6 +20,7 @@ interface BankStatement {
     start_date: string
     end_date: string
   }
+  currency: string
   opening_balance: string
   closing_balance: string
   transactions: Transaction[]
@@ -122,7 +123,7 @@ function App() {
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: bankData?.currency || 'USD',
     }).format(value)
 
   const statsInfo = {
@@ -139,7 +140,7 @@ function App() {
         <h1 className="text-5xl font-extrabold mb-4">Financial Insights Dashboard</h1>
         {bankData && (
           <h2 className="text-2xl font-medium mb-4">
-            Welcome, {bankData.account_holder_name}
+            {bankData.account_holder_name}'s Bank Statement
           </h2>
         )}
         <p className="text-xl text-indigo-50 max-w-2xl mx-auto">
@@ -233,7 +234,7 @@ function App() {
               <div className="bg-indigo-600 h-2.5 rounded-full animate-[loading_2s_ease-in-out_infinite]" style={{ width: '90%' }}></div>
             </div>
             <div className="mt-2 text-sm text-gray-500">
-              This usually takes about 15-20 seconds
+              This usually takes about 35-50 seconds
             </div>
           </div>
         </div>
@@ -311,7 +312,7 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Spending Categories */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-semibold text-gray-900 text-center mb-4">
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-4">
                 Spending Categories
               </h3>
               <div className="flex justify-center">
@@ -345,7 +346,7 @@ function App() {
               {/* Category breakdown list */}
               {bankData?.top_categories && Object.keys(bankData.top_categories).length > 0 && (
                 <div className="mt-6">
-                  <h4 className="text-md font-medium mb-2 text-gray-700">
+                  <h4 className="text-md font-bold mb-2 text-gray-700">
                     Categories Breakdown
                   </h4>
                   <div className="space-y-2">
@@ -369,7 +370,7 @@ function App() {
               <h3 className="text-xl font-semibold text-gray-900 text-center mb-4">
                 Recurring Transactions
               </h3>
-              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+              <div className="space-y-3 max-h-[250px] overflow-y-auto mb-4">
                 {bankData?.recurring_transactions.map((transaction, index) => (
                   <div
                     key={index}
@@ -404,6 +405,21 @@ function App() {
                   </div>
                 ))}
               </div>
+
+              {/* Summary Box */}
+              {bankData?.summary && (
+                <div className="mt-6 border-t border-gray-300 pt-4">
+                  <div className="flex items-center mb-2">
+                    <span className="text-lg mr-2">📝</span>
+                    <h4 className="text-md font-semibold text-gray-900">Transaction Summary</h4>
+                  </div>
+                  <div className="bg-gray-100 rounded-lg p-4">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      {bankData.summary}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

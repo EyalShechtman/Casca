@@ -14,7 +14,7 @@ export default {
         }
       },
       animation: {
-        loading: 'loading 2s ease-in-out infinite',
+        loading: 'loading 7s ease-in-out infinite',
       },
     },
   },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Transaction } from './App'  // Make sure to export the Transaction interface from App.tsx
 
 interface Transaction {
     date: string;
@@ -64,8 +65,61 @@ interface Transaction {
         t.type.toLowerCase().includes(searchQuery)
     );
   
+    const downloadCSV = () => {
+      // Create CSV headers
+      const headers = ['Date', 'Description', 'Amount', 'Type']
+      
+      // Convert transactions to CSV rows
+      const csvRows = [
+        headers,
+        ...transactions.map(t => [
+          t.date,
+          t.description,
+          t.amount,
+          t.type
+        ])
+      ]
+      
+      // Convert to CSV string
+      const csvContent = csvRows
+        .map(row => row.map(cell => `"${cell}"`).join(','))
+        .join('\n')
+      
+      // Create and trigger download
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const link = document.createElement('a')
+      const url = URL.createObjectURL(blob)
+      link.setAttribute('href', url)
+      link.setAttribute('download', 'transactions.csv')
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+  
     return (
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+          <h3 className="text-xl font-semibold text-gray-900">Recent Transactions</h3>
+          <button
+            onClick={downloadCSV}
+            className="flex items-center px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors"
+          >
+            <svg 
+              className="w-5 h-5 mr-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+            Download CSV
+          </button>
+        </div>
         {/* ✅ SEARCH INPUT */}
         <div className="p-4 border-b border-gray-200">
           <input
@@ -86,7 +140,7 @@ interface Transaction {
                   <th
                     key={column}
                     onClick={() => handleSort(column as keyof Transaction)}
-                    className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:text-indigo-500 transition"
+                    className="px-6 py-3 text-left font-bold text-gray-600 uppercase tracking-wider cursor-pointer hover:text-indigo-500 transition"
                   >
                     {column.charAt(0).toUpperCase() + column.slice(1)}{" "}
                     {sortColumn === column ? (sortOrder === "asc" ? "↑" : "↓") : ""}
